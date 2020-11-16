@@ -7,53 +7,55 @@
   <body>
     <h1><%=  %></h1>
     <h1>Peliculas</h1>
+    
     <ul>
       
           
       <form action="/movies/edit/<%=detail.id%>?_method=PUT" method="post">
-        <li>
+        
+         <li>
+            Título:
             <input type="text" required value="<%=detail.title%>" name="title" id="title">
-       </li>
-        <li>
-            Puntuación
-        <select name="rating" id="rating" value="<%=detail.rating%>">
-            <% for (let i = 0; i <= 10; i++) { %>
-                <option value="<%=i%>"><%=i%></option>
-                <% } %>
-       </li>
+         </li>
+        
+          <li>
+             Puntuación:
+            <select name="rating" id="rating" value="<%=detail.rating%>">
+             <% for (let i = 0; i <= 10; i++) { %>
+                <option value="<%=i%>"><%=i%>
+                  <% } %>
+          </select>
+          </li>
+
+          <li> 
+            Premios:
+            <input type="number" value="<%=detail.awards%>" min=0 name="awards" id="awards" >
+           </li>
        
-        <li>
-          Premios
-          <input type="number" value="<%=detail.awards%>" min=0 name="awards" id="awards" placeholder="Premios">
-       </li>
-        <li>
-            <input type="datetime" max="<%=Date.now()%>" value="<%=detail.release_date%>" name="release_date" id="release_date">
-       </li>
-        <li>
-            <input type="number" value="<%=detail.length%>" name="length" id="length">
-       </li>
-       <li>
-           Género
-            <select name="genre" value="<%=detail.genre_id%>" id="genre">
-                <option value="4">Acción</option>
-                <option value="7">Animación</option>
-                <option value="8">Aventuras</option>
-                <option value="5">Ciencia Ficción</option>
-                <option value="1">Comedia</option>
-                <option value="9">Documental</option>
-                <option value="3">Drama</option>
-                <option value="11">Fantasía</option>
-                <option value="10">Infantiles</option>
-                <option value="12">Musical</option>
-                <option value="6">Suspenso</option>
-                <option value="2">Terror</option>
+           <li>
+            Fecha de estréno: 
+              <input type="datetime" max="<%=Date.now()%>" value="<%=detail.release_date%>" name="release_date" id="release_date">
+           </li>
+        
+           <li>
+            Duración: 
+              <input type="number" value="<%=detail.length%>" name="length" id="length">
+           </li>
+       
+           <li>
+            Género:
+            <select name="genre" value="" id="genre">
+ 
             </select>
-            
-       </li>
-       <input type="submit" action="" value="Modificar">
-       <a href="/movies/delete/<%=detail.id%>">Eliminar</a>
-    </form>
+           </li>
+       
+           <input type="submit" action="" value="Modificar"></form>
+       
+      <form action="/movies/delete/<%=detail.id%>?_method=DELETE" value="delete" method="POST">
+      <button type="submit">Eliminar</button> </form>
+    
     </ul>
+    
     <p>Welcome to <%=  %></p>
   </body>
 </html>

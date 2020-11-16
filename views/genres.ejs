@@ -11,8 +11,12 @@
         
             <% for (let i = 0; i < movies.length; i++) { %>
          <li> 
+          
+          <a href="../detail/<%= movies[i].id%>">
           <%=  movies[i].title; %> 
-          </li>
+          </a>
+          
+         </li>
             <% } %>
         
     </ul>

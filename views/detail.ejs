@@ -17,15 +17,16 @@
          <li> Duración: <%=  detail.length; %></li>
          <li> Género: <a href="/movies/genre/<%=detail.genre.id%>"><%=detail.genre.name; %></a>   </li>
          <li>Actores: 
-           <dl><% for (var i=0;i<detail.actor.length; i++) {%>
+          <% for (var i=0;i<detail.actor.length; i++) {%>
             
-             <a href="../actor/<%=detail.actor[i].id%>"> <%= detail.actor[i].first_name + detail.actor[i].last_name %></a>
-            </dl>
+             <ul><a href="../actor/<%=detail.actor[i].id%>"> <%= detail.actor[i].first_name + detail.actor[i].last_name %></a></ul>
+            
           </li>
             <%}%>
         <form action="/movies/delete/<%=detail.id%>?_method=DELETE" value="delete" method="POST">
          <button type="submit">Eliminar</button> </form>
-         <a href="/movies/edit/<%=detail.id%>" method="GET" value="modify">Modificar</a>
+         <form action="/movies/edit/<%=detail.id%>" value="delete" method="GET">
+          <button type="submit">Modificar</button> </form>
          
     </ul>
     <p>Welcome to <%=  %></p>

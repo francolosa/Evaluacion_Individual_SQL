@@ -84,7 +84,9 @@ module.exports = {
         } catch (error) { console.log(error) }
     },
     getEdit: async (req,res)=>{
-        const editMovie = await Movie.findByPk(req.params.id)
+        const editMovie = await Movie.findByPk(req.params.id, {
+            include: 'genre'
+        })
         res.render('edit', {detail: editMovie})
     },
     edit: async (req,res)=>{

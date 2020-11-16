@@ -13,8 +13,8 @@
          <li> Nombre: <%=  actor.first_name; %> </li>
          <li> Apellido: <%=  actor.last_name; %> </li>
          <li>Películas: 
-            <li>    <% for (var i=0; i < movie[actor_id].length; i++) {%> 
-            <%=  movie.title %> 
+              <% for (var i=0; i < actor.movie.length; i++) {%> 
+            <ul><%=  actor.movie[i].title %> </ul>
             <% } %>
             </li>
         </li>
