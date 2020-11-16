@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%=  %></h1>
+    <h1>Peliculas</h1>
+
+    <ul>
+        
+        <% for (let i = 0; i < search.length; i++) { %>
+            <li> <a href="detail/<%=search[i].id %>">
+             <%=  search[i].title; %> 
+             </a></li>
+               <% } %>
+
+        
+    </ul>
+
+
+    <p>Welcome to <%=  %></p>
+  </body>
+</html>

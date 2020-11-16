@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%=  %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%=  %></h1>
+    <h1>Index</h1>
+    <p>Welcome to <%=  %></p>
+    <ul><h2>Búsqueda</h2>
+    <form action="movies/search" method="POST">
+      <li><input type="text" name="title" id="title" placeholder="Introdúzca un título">
+      <input type="submit" value="Buscar"></li>
+      <p>Orden:</p>
+
+      <li><select name="order" id="order">
+        <option value="ASC">Ascendente</option>
+        <option value="DESC">Descendente</option>  
+      </li></select>
+    </form></ul>
+    <a href="movies/recommended">Recomendadas!</a>
+    <a href="movies/">Todas las pelis</a>
+    <a href="movies/new">Últimas pelis</a>
+    <a href="movies/create">Crear Película</a>
+
+     </body>
+</html>

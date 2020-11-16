@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%=  %></h1>
+    <h1>Peliculas</h1>
+    <ul>
+      
+          
+         <li> Título: <%=  detail.title; %> </li>
+         <li> Puntuación: <%=  detail.rating; %> </li>
+         <li>Premio: <%=  detail.awards; %> </li>
+         <li>Fecha de lanzamiento: <%=  detail.release_date; %></li>
+         <li> Duración: <%=  detail.length; %></li>
+         <li> Género: <%=  detail.genre_id; %>   </li>
+        <form action="/movies/delete/<%=detail.id%>?_method=DELETE" value="delete" method="POST">
+         <button type="submit">Eliminar</button> </form>
+         <a href="/movies/edit/<%=detail.id%>" method="GET" value="modify">Modificar</a>
+          
+    </ul>
+    <p>Welcome to <%=  %></p>
+  </body>
+</html>

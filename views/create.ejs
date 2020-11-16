@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Crear Película</h1>
+    <ul>
+      
+    <form action="/movies/create" method="post">
+         <li>
+             <input type="text" required name="title" id="title" placeholder="Título">
+        </li>
+         <li>
+             Puntuación
+        <select name="rating" id="rating">
+             <option value="1">1</option>
+             <option value="2">2</option>
+             <option value="3">3</option>
+             <option value="4">4</option>
+             <option value="5">5</option>
+         </select>
+        </li>
+         <li>
+             <input type="number" required min=0 name="awards" id="awards" placeholder="Premios">
+        </li>
+         <li>
+             <input type="date" max="<%=Date.now()%>" required name="release_date" id="release_date" placeholder="Fecha de estréno">
+        </li>
+         <li>
+             <input type="number" required name="length" id="length" placeholder="Duración">
+        </li>
+        <li>
+            Género
+             <select name="genre" id="genre">
+                 <option value="4">Acción</option>
+                 <option value="7">Animación</option>
+                 <option value="8">Aventuras</option>
+                 <option value="5">Ciencia Ficción</option>
+                 <option value="1">Comedia</option>
+                 <option value="9">Documental</option>
+                 <option value="3">Drama</option>
+                 <option value="11">Fantasía</option>
+                 <option value="10">Infantiles</option>
+                 <option value="12">Musical</option>
+                 <option value="6">Suspenso</option>
+                 <option value="2">Terror</option>
+             </select>
+             
+        </li>
+        <input type="submit" action="" value="crear">
+        <input type="submit" action="" value="limpiar">
+    </form> 
+    </ul>
+    
+</body>
+</html>
