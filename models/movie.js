@@ -1,7 +1,7 @@
-const { sequelize, DataTypes } = require("sequelize")
+const {sequelize, DataTypes} = require("sequelize")
 
 module.exports = (sequelize, DataTypes) => {
-    const movie = sequelize.define("Movie", {
+    const Movie = sequelize.define('Movie', {
         title: DataTypes.STRING,
         rating: DataTypes.DECIMAL,
         awards: DataTypes.INTEGER,
@@ -10,14 +10,21 @@ module.exports = (sequelize, DataTypes) => {
         genre_id: DataTypes.INTEGER
     },{
         timestamps: false
+    });
+        
+    Movie.associate = models =>{
+        Movie.belongsTo(models.Genre, {
+            as: 'genre',
+            foreingKey: 'genre_id'
+        })
+        Movie.belongsToMany(models.Actor, {
+            as: 'actor',
+            through: 'actor_movie',
+            foreingKey: 'movie_id',
+            otherKey: 'actor_id',
+            timestamps: false
+        })
+        // Movie.belongsTo(models.Actor)
     }
-    ); 
-    
-    // Movie.associate = function(models){
-    //     movie.belongsTo(models.Generos, {
-    //         as: 'genre',
-    //         foreingKey: 'genre_id'
-    //     })
-    // }
-    return movie
+    return Movie
 }

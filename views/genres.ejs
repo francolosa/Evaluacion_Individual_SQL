@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%=  %></h1>
+    <h1>Peliculas de <%=movies[0].genre.name%></h1>
+    <ul>
+        
+            <% for (let i = 0; i < movies.length; i++) { %>
+         <li> 
+          <%=  movies[i].title; %> 
+          </li>
+            <% } %>
+        
+    </ul>
+    <p>Welcome to <%=  %></p>
+  </body>
+</html>

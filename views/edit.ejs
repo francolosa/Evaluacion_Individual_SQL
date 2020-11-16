@@ -16,21 +16,15 @@
        </li>
         <li>
             Puntuación
-       <select name="rating" value="<%=detail.rating%>" id="rating">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-        </select>
+        <select name="rating" id="rating" value="<%=detail.rating%>">
+            <% for (let i = 0; i <= 10; i++) { %>
+                <option value="<%=i%>"><%=i%></option>
+                <% } %>
        </li>
+       
         <li>
-            <input type="number" value="<%=detail.awards%>" min=0 name="awards" id="awards" placeholder="Premios">
+          Premios
+          <input type="number" value="<%=detail.awards%>" min=0 name="awards" id="awards" placeholder="Premios">
        </li>
         <li>
             <input type="datetime" max="<%=Date.now()%>" value="<%=detail.release_date%>" name="release_date" id="release_date">

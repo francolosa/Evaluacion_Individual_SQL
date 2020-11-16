@@ -1,28 +1,26 @@
-const fs = require('fs');
-const path = require('path');
-const { brotliDecompressSync } = require('zlib');
-const {Movie, Sequelize} = require('../models/');
+const {Movie, Sequelize, Genre, Actor} = require('../models/');
 const Op = Sequelize.Op
-
 
 module.exports = {
     all: async (req,res)=>{
          try {
-             const movies = await Movie.findAll()
-             res.render('movies', {movies})
-        } catch (error){
-            console.log(error)}
-       
+             const movies = await Movie.findAll({
+                 include:'genre'
+             })
+             res.render('movies', {movies: movies})
+        } catch (error) { console.log(error) }
         console.log('se accedió a películas')
     },
     detail: async (req,res)=>{
         try {
-        const detail = await Movie.findByPk(req.params.id)
+        const detail = await Movie.findByPk(
+            req.params.id,{
+                include: ['genre','actor']
+            })
+            console.log(detail.actor)
         res.render('detail', {detail})
 
-        } catch (error) {
-            console.log(error)}
-
+        } catch (error) { console.log(error) }
         console.log('se accedió detalle')
     },
     new: async (req,res)=>{
@@ -30,17 +28,12 @@ module.exports = {
         const newMovies = await Movie.findAll({
             order_by: [
                 ['release_date', 'DESC']
-            ]
-             ,
-            limit: 5
-        })
-        console.log(newMovies)
-        console.log(Date.now())
+            ],
+                limit: 5
+            })
         res.render('new', {newMovies})
         console.log('se accedió a novedades')
-    } catch (error) {
-        console.log(error)
-    }
+        } catch (error) { console.log(error) }
     },
     reco: async (req, res)=>{
         try {
@@ -50,11 +43,8 @@ module.exports = {
             }
         })
         res.render('recommended', {reco})
-         } catch (error) {
-            console.log(error)
-        } 
-        
-console.log('se accedió a recomendadas')
+         } catch (error) { console.log(error) } 
+        console.log('se accedió a recomendadas')
     },
     search: async (req,res)=>{
         try {
@@ -70,15 +60,15 @@ console.log('se accedió a recomendadas')
             ]
             }) 
             res.render('search',{search})
-        } catch (error) {
-            console.log(error)
-        }
+        } catch (error) { console.log(error) }
         console.log('se realizo una búsqueda')
     },
-    getCreate: (req,res)=>{
-        res.render('create')
-
-        console.log('se accedió al formulario de creación')
+    getCreate: async (req,res)=>{
+        try {
+        const generos = await Genre.findAll()
+        res.render('create', {genre: generos})
+    } catch (error) { console.log(error) }
+         console.log('se accedió al formulario de creación')
     },
     create: async (req,res)=>{
         try {
@@ -89,12 +79,9 @@ console.log('se accedió a recomendadas')
             release_date: req.body.release_date,
             length: req.body.length,
             genre_id: req.body.genre,
-            
             }) 
             res.redirect('/movies');
-        } catch (error) {
-            console.log(error)
-        }
+        } catch (error) { console.log(error) }
     },
     getEdit: async (req,res)=>{
         const editMovie = await Movie.findByPk(req.params.id)
@@ -115,9 +102,7 @@ console.log('se accedió a recomendadas')
         }}
         )
         res.redirect('/movies')
-    } catch (error) {
-        console.log(error)
-    }
+    } catch (error) { console.log(error) }
         },
     delete: async (req,res)=>{
         try {
@@ -125,12 +110,29 @@ console.log('se accedió a recomendadas')
             where: { 
                 id: req.params.id 
             }
-        }
-        )
+        })
         res.redirect('/movies')
-    } catch (error) {
-        console.log(error)
+    } catch (error) { console.log(error) }  
+    },
+    genres: async (req,res)=>{
+        try {
+            const genres = await Movie.findAll({
+                where: { 
+                    genre_id: req.params.id  
+                },
+                include: 'genre' 
+            })
+            console.log(genres)
+            res.render('genres', {movies: genres} )
+        } catch (error) { console.log(error) }   
+    },
+    actor: async (req,res) => {
+        try {
+            const actor = await Actor.findByPk(req.params.id,{
+                include: 'movie'
+            })
+            res.render('actor', {actor: actor})
+            console.log(actor.movie)
+        } catch (error) { console.log(error) }   
     }
-
-}
 }

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%=  %></h1>
+    <h1>Peliculas</h1>
+    <ul>
+      
+          
+         <li> Nombre: <%=  actor.first_name; %> </li>
+         <li> Apellido: <%=  actor.last_name; %> </li>
+         <li>Películas: 
+            <li>    <% for (var i=0; i < movie[actor_id].length; i++) {%> 
+            <%=  movie.title %> 
+            <% } %>
+            </li>
+        </li>
+            
+        
+    </ul>
+    <p>Welcome to <%=  %></p>
+  </body>
+</html>

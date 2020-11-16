@@ -1,22 +1,18 @@
-const { DataTypes, DATE } = require("sequelize")
-// const { lte } = require("../node_modules/sequelize/types/lib/operators")
-
+const { DataTypes, sequelize} = require("sequelize")
 
 module.exports = (sequelize, DataTypes) => {
-    let cols = {
-        name: { type: DataTypes.STRING },
-        ranking: { type: DataTypes.DECIMAL },
-        active: { type: DataTypes.BOOLEAN }
-    }
-    let config = {
-        timestamps: true
-    }
-        let Genre = sequelize.define("Genre",cols, config);
-        
-        // Genre.associate = function(models){
-        //     Genre.hasMany(models.Movie, {
-        //         as: 'movie',
-        //         foreingKey: 'genre_id'
-        // })
+    const Genre = sequelize.define('Genre',{
+        name: DataTypes.STRING,
+        ranking: DataTypes.DECIMAL,
+        active: DataTypes.INTEGER
+    },{
+        timestamps: false
+    });        
+        Genre.associate = models => {
+            Genre.hasMany(models.Movie, {
+                as: 'genre',
+                foreingKey: 'genre_id'
+            })
+        }
     return Genre
 }

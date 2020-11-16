@@ -6,7 +6,10 @@ module.exports = {
     "host": "127.0.0.1",
     "port": 8889,
     "dialect": "mysql",
-     underscore: true
+    define:{
+      underscored:true
+    }
+
   },
   "test": {
     "username": "root",
