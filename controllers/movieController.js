@@ -1,5 +1,7 @@
 const {Movie, Sequelize, Genre, Actor} = require('../models/');
 const Op = Sequelize.Op
+const path = require('path');
+
 
 module.exports = {
     all: async (req,res)=>{
@@ -107,17 +109,21 @@ module.exports = {
         res.redirect('/movies')
     } catch (error) { console.log(error) }
         },
-    delete: async (req,res)=>{
-        try {
-        await Movie.destroy({
-            where: { 
-                id: req.params.id 
-            }
-        })
-        res.redirect('/movies')
-    } catch (error) { console.log(error) }  
-    },
-    genres: async (req,res)=>{
+        delete: async (req, res) => {
+            try {
+            const movie = await Movie.findByPk(req.params.id, {include:{all: true}});
+            await movie.removeActor(movie.actores)
+            await movie.removeActor_favorite(movie.actor_favorite)            
+            await Movie.destroy({
+              where: {id: req.params.id}
+            });
+      
+            res.redirect('/movies');
+      
+            } catch (error) { console.log(error) } 
+            
+          },
+        genres: async (req,res)=>{
         try {
             const genres = await Movie.findAll({
                 where: { 

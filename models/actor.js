@@ -15,10 +15,14 @@ module.exports = (sequelize, DataTypes) => {
             otherKey: 'movie_id',
             timestamps: false
         })
-        // Actor.belongsTo(models.Movie,{
-        //     as: 'favourites',
-        //     foreingKey: 'favorite_movie_id'
-        // })
+        Actor.belongsTo(models.Movie,{
+            as: 'favorite_movie',
+            foreingKey: 'favorite_movie_id'
+        })
+        Actor.belongsToMany(models.Movie, {
+            as: 'peliculas',
+            through: 'actor_movie'
+        })
     }
     return Actor
 }

@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
             otherKey: 'actor_id',
             timestamps: false
         })
-        // Movie.belongsTo(models.Actor)
+        Movie.hasMany(models.Actor, {as: 'actor_favorite', foreignKey: 'favorite_movie_id'});
     }
     return Movie
 }

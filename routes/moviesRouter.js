@@ -1,6 +1,7 @@
 var express = require('express');
 var movieController = require('../controllers/movieController');
 var router = express.Router();
+const validator = require('../middlewares/routes/validator');
 
 /* GET lista peliculas. */
 router.get('/', movieController.all);
@@ -27,10 +28,10 @@ router.get('/actor/:id', movieController.actor)
 router.get('/genre/:id', movieController.genres)
 
 /* PUT formulario de edición. */
-router.put('/edit/:id', movieController.edit)
+router.put('/edit/:id',validator.createMovie, movieController.edit)
 
 /* POST formulario de creación. */
-router.post('/create', movieController.create)
+router.post('/create',validator.createMovie, movieController.create)
 
 /* POST buscar pelicula. */
 router.post('/search', movieController.search);
