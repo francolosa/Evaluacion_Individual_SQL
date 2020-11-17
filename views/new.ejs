@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
+  <%- include('partials/head')%>
+
+  <%- include('partials/header')%>
+
   <body>
-    <h1><%=  %></h1>
-    <h1>Peliculas</h1>
+    <h1>Novedades</h1>
     <ul>
         
             <% for (let i = 0; i < newMovies.length; i++) { %>
@@ -16,6 +15,6 @@
             <% } %>
         
     </ul>
-    <p>Welcome to <%=  %></p>
   </body>
+  <%- include('partials/footer')%>
 </html>

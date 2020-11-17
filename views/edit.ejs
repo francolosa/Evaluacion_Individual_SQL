@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
+  <%- include('partials/head')%>
+
+  <%- include('partials/header')%>
+
   <body>
-    <h1><%=  %></h1>
-    <h1>Peliculas</h1>
+    <h1>Modificación de <%=detail.title %></h1>
     
     <ul>
       
@@ -20,7 +19,7 @@
         
           <li>
              Puntuación:
-            <select name="rating" id="rating" value="<%=detail.rating%>">
+            <select name="rating" id="rating" value="1">
              <% for (let i = 0; i <= 10; i++) { %>
                 <option value="<%=i%>"><%=i%>
                   <% } %>
@@ -44,8 +43,11 @@
        
            <li>
             Género:
-            <select name="genre" value="" id="genre">
- 
+            <select name="genre" id="genre">
+              <option value="<%=genre2.id%>" selected><%=genre2.name%></option>
+              <% for (let i = 0; i < genre.length; i++) { %>
+                <option value="<%=genre[i].id%>"><%=genre[i].name%></option>
+                <% } %>
             </select>
            </li>
        
@@ -56,6 +58,6 @@
     
     </ul>
     
-    <p>Welcome to <%=  %></p>
   </body>
+  <%- include('partials/footer')%>
 </html>

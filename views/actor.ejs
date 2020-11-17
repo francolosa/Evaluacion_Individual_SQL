@@ -1,26 +1,30 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
+  <%- include('partials/head')%>
+  <%- include('partials/header')%>
+
   <body>
-    <h1><%=  %></h1>
-    <h1>Peliculas</h1>
+    <h1>Información de <%=actor.first_name +" "+ actor.last_name%></h1>
+
     <ul>
       
           
          <li> Nombre: <%=  actor.first_name; %> </li>
          <li> Apellido: <%=  actor.last_name; %> </li>
-         <li>Películas: 
+         <li> Puntuación: <%= actor.rating%></li>
+         <li>Películas en las que participó: 
               <% for (var i=0; i < actor.movie.length; i++) {%> 
-            <ul><%=  actor.movie[i].title %> </ul>
+            <ul>
+              <a href="../detail/<%=actor.movie[i].id%>">
+              <%=  actor.movie[i].title %> 
+              </a>
+            </ul>
             <% } %>
             </li>
         </li>
             
         
     </ul>
-    <p>Welcome to <%=  %></p>
   </body>
+  <%- include('partials/footer')%>
 </html>

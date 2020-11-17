@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
+  <%- include('partials/head')%>
+
+  <%- include('partials/header')%>
+
   <body>
-    <h1><%=  %></h1>
-    <h1>Peliculas de <%=movies[0].genre.name%></h1>
+
+    <h1>Peliculas del género <%=movies[0].genre.name%></h1>
     <ul>
         
             <% for (let i = 0; i < movies.length; i++) { %>
@@ -20,6 +20,6 @@
             <% } %>
         
     </ul>
-    <p>Welcome to <%=  %></p>
   </body>
+  <%- include('partials/footer')%>
 </html>

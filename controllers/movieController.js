@@ -59,7 +59,8 @@ module.exports = {
                     ['title', req.body.order]
             ]
             }) 
-            res.render('search',{search})
+            const searched = req.body.title
+            res.render('search',{search, searched})
         } catch (error) { console.log(error) }
         console.log('se realizo una búsqueda')
     },
@@ -84,10 +85,10 @@ module.exports = {
         } catch (error) { console.log(error) }
     },
     getEdit: async (req,res)=>{
-        const editMovie = await Movie.findByPk(req.params.id, {
-            include: 'genre'
-        })
-        res.render('edit', {detail: editMovie})
+        const editMovie = await Movie.findByPk(req.params.id)
+        const genre = await Genre.findAll()
+        const genre2 = (genre[editMovie.genre_id-1])
+        res.render('edit', {detail: editMovie, genre, genre2})
     },
     edit: async (req,res)=>{
         try {

@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%=  %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
+<%- include('partials/head')%>
+  <%- include('partials/header')%>
+
   <body>
     <h1><%=  %></h1>
     <h1>Index</h1>
-    <p>Welcome to <%=  %></p>
+
     <ul><h2>Búsqueda</h2>
     <form action="movies/search" method="POST">
       <li><input type="text" name="title" id="title" placeholder="Introdúzca un título">
@@ -20,9 +19,10 @@
       </li></select>
     </form></ul>
     <a href="movies/recommended">Recomendadas!</a>
-    <a href="movies/">Todas las pelis</a>
-    <a href="movies/new">Últimas pelis</a>
+    <a href="movies/">Todas nuestras películas</a>
+    <a href="movies/new">Novedades!</a>
     <a href="movies/create">Crear Película</a>
 
      </body>
+     <%- include('partials/footer')%>
 </html>

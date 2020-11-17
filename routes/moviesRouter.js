@@ -20,14 +20,14 @@ router.get('/create', movieController.getCreate);
 /* GET formulario de edición. */
 router.get('/edit/:id', movieController.getEdit)
 
+/* GET detalle del actor. */
+router.get('/actor/:id', movieController.actor)
+
 /* GET peliculas asociadas a un genero. */
 router.get('/genre/:id', movieController.genres)
 
 /* PUT formulario de edición. */
 router.put('/edit/:id', movieController.edit)
-
-/* GET detalle del actor. */
-router.get('/actor/:id', movieController.actor)
 
 /* POST formulario de creación. */
 router.post('/create', movieController.create)
